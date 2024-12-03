@@ -1,0 +1,42 @@
+﻿<html>
+<head>
+
+<style>
+</style>
+
+<script>
+
+function getslideposX(cnt,maxrow,maxcol){ // returns col number
+var tmp=1; var tmp2=1;
+for(var a=0;a<maxcol;a++){if(cnt>=tmp2 && cnt<=maxrow*tmp){return (tmp-1);} tmp++;tmp2+=maxrow;}
+}
+
+function doslider1(){
+var maxcol=2;var maxrow=3;var cnt=1;
+var image0container=document.getElementById("slider1container");
+var image0=document.getElementById("slider1image");
+image0.style.width=(image0container.offsetWidth*maxcol)+"px";
+image0.style.height=(image0container.offsetHeight*maxrow)+"px";
+var intval;
+intval=setInterval(function(){
+if(cnt<=maxcol*maxrow){
+image0.style.left=(((image0.offsetWidth)/(maxcol))*(getslideposX(cnt,maxrow,maxcol))*-1)+"px";
+image0.style.top=(((image0.offsetHeight)/(maxrow))*(((cnt%maxrow==0)? maxrow : Math.floor(cnt%maxrow))-1)*-1)+"px"; // row number
+cnt++;}
+else{cnt=1;}
+},3000);
+}
+
+</script>
+</head>
+<body align="center" onload="doslider1(0);">
+<div align="center">
+<div id="slider1container" style="position:relative;border:2px solid #000000;width:28vw;height:28vw;overflow:hidden;">
+<img id="slider1image" src="table-pics.jpg" style="transition:0.8s;position:absolute;left:0;top:0;"/>
+</div>
+</div>
+</body>
+</html>
+
+
+
